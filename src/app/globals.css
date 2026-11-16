@@ -1,0 +1,528 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand scale sampled from the logo mark: #04005e ground, #deddff mark. */
+  --brand-950: #04005e;
+  --brand-900: #0a0578;
+  --brand-700: #1b12a6;
+  --brand-500: #3b2fd6;
+  --brand-300: #9a94f0;
+  --brand-100: #deddff;
+  --brand-50: #f2f1ff;
+
+  /* Cool off-white canvas rather than pure white: it stops large white areas
+     from glaring and gives the violet accents somewhere to sit. */
+  --bg: #f7f8fa;
+  --bg-tint: #ffffff;
+  --ink: #0c0a2e;
+  --ink-plum: #04005e;
+
+  /* Three-step text ramp. Muted for body copy, faint for meta labels and
+     anything a reader should be able to skip. */
+  --ink-muted: #5f6470;
+  --muted: #5f6470;
+  --ink-faint: #9aa0ab;
+
+  /* One hairline, not two weights. Cards get separation from their shadow
+     instead of from a heavier border. */
+  --hairline: rgba(15, 23, 42, 0.08);
+  --line: rgba(15, 23, 42, 0.08);
+  --line-soft: rgba(15, 23, 42, 0.05);
+
+  --btn: #0c0a2e;
+  --badge: #0c0a2e;
+  --surface: #ffffff;
+  --surface-2: #eef0f4;
+  --accent: #5b5bd6;
+  --accent-soft: #e7e7fa;
+
+  /* One content column for the whole site: header, every section and the hero
+     visual all land on the same two edges. Line length is still capped per
+     text block (max-w-xl / max-w-3xl). Long-form pages use .wrap-prose. */
+  --gutter: clamp(20px, 4.2vw, 60px);
+  --page: 96rem;
+  --prose: 52rem;
+  --radius: 0.875rem;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Display scale. Clamps down for phones; the vw term keeps long headlines
+     from breaking early. Tracking tightens as size grows. */
+  --text-display-1: clamp(44px, 6.4vw, 78px);
+  --leading-display-1: 1.04;
+  --text-display-2: clamp(34px, 4.8vw, 56px);
+  --leading-display-2: 1.06;
+  --text-display-3: clamp(23px, 2.4vw, 30px);
+  --leading-display-3: 1.16;
+  --tracking-display: -0.035em;
+
+  --text-h1: var(--text-display-1);
+  --leading-h1: var(--leading-display-1);
+  --tracking-title: var(--tracking-display);
+  --text-h2: var(--text-display-2);
+  --leading-h2: var(--leading-display-2);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-tint: var(--bg-tint);
+  --color-ink: var(--ink);
+  --color-ink-plum: var(--ink-plum);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-hairline: var(--hairline);
+  --color-btn: var(--btn);
+  --color-badge: var(--badge);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+
+  --color-brand-950: var(--brand-950);
+  --color-brand-900: var(--brand-900);
+  --color-brand-700: var(--brand-700);
+  --color-brand-500: var(--brand-500);
+  --color-brand-300: var(--brand-300);
+  --color-brand-100: var(--brand-100);
+  --color-brand-50: var(--brand-50);
+
+  /* Radius scale, derived from a single base. */
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --font-brand: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-script: "Caveat", cursive;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-brand);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--brand-100);
+  color: var(--brand-950);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: calc(var(--page) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.wrap-prose {
+  width: 100%;
+  max-width: calc(var(--prose) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* --- Display type ---------------------------------------------------------
+   Two tiers only. h1/h2 keep their old class names so existing markup picks
+   up the new scale without being rewritten. */
+
+.h1 {
+  font-size: var(--text-display-1);
+  line-height: var(--leading-display-1);
+  letter-spacing: var(--tracking-display);
+  font-weight: 500;
+}
+
+.h2 {
+  font-size: var(--text-display-2);
+  line-height: var(--leading-display-2);
+  letter-spacing: var(--tracking-display);
+  font-weight: 500;
+}
+
+@utility text-display-1 {
+  font-size: clamp(44px, 6.4vw, 78px);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+@utility text-display-2 {
+  font-size: var(--text-display-2);
+  line-height: var(--leading-display-2);
+  letter-spacing: var(--tracking-display);
+}
+
+@utility text-display-3 {
+  font-size: var(--text-display-3);
+  line-height: var(--leading-display-3);
+  letter-spacing: -0.022em;
+}
+
+@utility text-body {
+  font-size: 19px;
+  line-height: 1.62;
+}
+
+/* Two-tone heading: the second line drops to muted and regular weight. The
+   signature typographic move, and it lets a headline carry a claim and its
+   qualifier without either one shouting. */
+@utility text-two-tone {
+  & > span {
+    display: block;
+  }
+  & > span:first-child {
+    font-weight: 500;
+    color: var(--ink);
+  }
+  & > span:last-child {
+    font-weight: 400;
+    color: var(--ink-muted);
+  }
+}
+
+/* --- Surfaces --------------------------------------------------------------
+   Cards get their lit edge from Bezel, so only the pills define shadows now.
+   Both carry an inset 1px white highlight on the top edge, which is what
+   makes a pill read as lit rather than flat. */
+
+@utility shadow-pill {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 4px 10px -6px rgba(15, 23, 42, 0.35);
+}
+
+@utility shadow-pill-light {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 0 0 1px rgba(15, 23, 42, 0.06);
+}
+
+/* --- Long-form prose ------------------------------------------------------- */
+
+.prose-lian {
+  font-size: 16.5px;
+  line-height: 1.72;
+  color: var(--ink-muted);
+}
+
+.prose-lian > * + * {
+  margin-top: 1.05em;
+}
+
+.prose-lian h2 {
+  margin-top: 2.1em;
+  color: var(--ink);
+  font-size: 1.15rem;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  font-weight: 500;
+}
+
+.prose-lian h3 {
+  margin-top: 1.6em;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.prose-lian a {
+  color: var(--ink);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--hairline);
+  text-underline-offset: 2px;
+}
+
+.prose-lian a:hover {
+  text-decoration-color: var(--ink);
+}
+
+.prose-lian ul,
+.prose-lian ol {
+  padding-left: 0;
+  list-style: none;
+}
+
+.prose-lian li {
+  position: relative;
+  padding-left: 1.2em;
+}
+
+.prose-lian li + li {
+  margin-top: 0.5em;
+}
+
+.prose-lian li::before {
+  content: "";
+  position: absolute;
+  left: 0.15em;
+  top: 0.72em;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: var(--ink-faint);
+}
+
+.prose-lian strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.prose-lian blockquote {
+  border-left: 2px solid var(--ink);
+  padding-left: 1rem;
+  color: var(--ink);
+}
+
+.prose-lian code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  background: rgba(15, 23, 42, 0.05);
+  border-radius: 6px;
+  padding: 0.1em 0.35em;
+}
+
+.prose-lian table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+
+.prose-lian th,
+.prose-lian td {
+  text-align: left;
+  padding: 0.6em 0.8em;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.prose-lian th {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* --- Section rhythm --------------------------------------------------------
+   Every band on the page uses one of these two, so vertical spacing is a
+   single decision rather than a per-component guess. */
+
+@utility band {
+  padding-block: clamp(64px, 8vw, 104px);
+}
+
+@utility band-tight {
+  padding-block: clamp(48px, 5vw, 72px);
+}
+
+.placeholder-panel {
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+}
+
+/* --- Legacy keyframes ------------------------------------------------------
+   Still used by the hero word roll and the fit quiz. Both are suppressed under
+   prefers-reduced-motion below. */
+
+/* Hero word roll: each word is stacked in the same one-line window and runs
+   its own copy of the animation, offset by animation-delay. Self-contained,
+   so it does not depend on the track height or on var() inside keyframes. */
+.roll {
+  position: relative;
+  display: block;
+  height: 1.15em;
+  overflow: hidden;
+}
+
+.roll > span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  line-height: 1.15em;
+  white-space: nowrap;
+  opacity: 0;
+  animation: roll-word 13s ease-in-out infinite;
+}
+
+@keyframes roll-word {
+  0% {
+    opacity: 0;
+    transform: translateY(65%);
+  }
+  2%,
+  20% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  23%,
+  100% {
+    opacity: 0;
+    transform: translateY(-65%);
+  }
+}
+
+.fit-quiz-panel {
+  animation: fit-quiz-in 420ms var(--ease) both;
+}
+
+@keyframes fit-quiz-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Grain-wave backdrop fades in rather than snapping, so the canvas does not
+   appear as a hard rectangle on first paint. */
+.grain-canvas {
+  opacity: 0;
+  animation: grain-in 900ms var(--ease) 120ms forwards;
+}
+
+@keyframes grain-in {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hero sky: each cloud layer is two identical tiles side by side, so sliding
+   the track by exactly half its width loops without a seam. Only transform
+   animates, and the layer pauses while the hero is off-screen. */
+.sky-drift {
+  animation: sky-drift var(--sky-duration, 90s) linear infinite;
+  will-change: transform;
+}
+
+[data-sky-paused="true"] .sky-drift {
+  animation-play-state: paused;
+}
+
+/* Client logo strip: same two-identical-halves trick as the sky. */
+.marquee {
+  animation: sky-drift var(--marquee-duration, 40s) linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes sky-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Process cards: each one pins a bezel's width lower than the card before it,
+   so scrolling deals them into a deck with the earlier edges showing. A card
+   taller than the space left under the header would hide its own bottom while
+   pinned, so short phone screens fall back to a plain column. */
+.step-card {
+  position: sticky;
+  top: calc(72px + var(--step-index) * 12px);
+}
+
+@media (min-width: 768px) {
+  .step-card {
+    top: calc(96px + var(--step-index) * 22px);
+  }
+}
+
+@media (max-width: 767px) and (max-height: 759px) {
+  .step-card {
+    position: static;
+  }
+}
+
+/* Where the whole deck fits under it, the section intro pins too, so the
+   reader always knows which section the cards belong to. */
+@media (min-width: 768px) and (min-height: 800px) and (prefers-reduced-motion: no-preference) {
+  .process-intro {
+    position: sticky;
+    top: 80px;
+  }
+  .step-card {
+    top: calc(240px + var(--step-index) * 22px);
+  }
+}
+
+/* Process visuals. Loops only run while their stage is on screen: the stage
+   sets data-play, and everything below pauses without it. */
+.wave-bar {
+  transform-origin: center;
+  animation: wave-bar 1.2s var(--ease) infinite;
+  animation-play-state: paused;
+}
+
+@keyframes wave-bar {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+[data-play="true"] .wave-bar {
+  animation-play-state: running;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sky-drift,
+  .marquee {
+    animation: none;
+  }
+  .step-card {
+    position: static;
+  }
+  .wave-bar {
+    animation: none;
+  }
+  .roll > span {
+    animation: none;
+    opacity: 0;
+  }
+  .roll > span:first-child {
+    opacity: 1;
+  }
+  .fit-quiz-panel {
+    animation: none;
+  }
+  .grain-canvas {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* The hero's client strip sits at the bottom of the first screen, where an
+   in-view reveal may never fire, so it fades in on load instead. */
+@keyframes hero-strip-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+.hero-strip {
+  animation: hero-strip-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-strip {
+    animation: none;
+  }
+}

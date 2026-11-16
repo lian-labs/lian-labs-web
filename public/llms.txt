@@ -1,0 +1,25 @@
+# Lian Labs
+
+> Lian Labs is a software company headquartered in Addis Ababa, Ethiopia. It designs and builds web platforms, SaaS products, mobile apps and AI features for clients worldwide, builds business software for Ethiopian organisations, and runs its own products.
+
+Contact: contact@lian-labs.com
+
+## Editions
+
+- Global site (clients worldwide): /
+- Ethiopia site (Ethiopian businesses, schools and organisations): /et
+
+## Services
+
+- Global: custom software & SaaS, mobile apps, AI integration, product & UX design, cloud & DevOps, dedicated developers: /services
+- Ethiopia: custom business software, websites, mobile apps, Telebirr/Chapa/bank payment and SMS integration, school management, AI & automation: /et/services
+
+## Products
+
+- Lian SMS, school management system: /products/lian-sms
+- Gojo, dating app for the Habesha community: /products/gojo
+
+## Company
+
+- About: /about
+- Contact: /contact
