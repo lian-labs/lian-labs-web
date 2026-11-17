@@ -1,24 +1,9 @@
 /**
- * The site has two editions that share one theme and one set of components:
- * the global edition at `/` and the Ethiopia edition at `/et`. Pages that
- * differ per edition (home, services) take a `region`; shared pages
- * (products, about, contact) link back to whichever edition the reader
- * last chose through the header switch.
+ * The copy in `editions.ts` exists in two versions: one for Ethiopia and one
+ * for clients worldwide. This site runs on et.lian-labs.com and serves the
+ * Ethiopia version only; the global audience is served by lian-labs.com.
+ * Set SITE_REGION to "world" to serve the global copy instead.
  */
-export const REGIONS = ["world", "et"] as const;
-export type Region = (typeof REGIONS)[number];
+export type Region = "world" | "et";
 
-export const REGION_META: Record<
-  Region,
-  { label: string; short: string; base: string; flag: string | null }
-> = {
-  world: { label: "Global", short: "Global", base: "", flag: null },
-  et: { label: "Ethiopia", short: "ET", base: "/et", flag: "/flags/rect/et.svg" },
-};
-
-/** Prefix a path with the edition's base, e.g. ("et", "/services") -> "/et/services". */
-export function regionPath(region: Region, path = "/") {
-  const base = REGION_META[region].base;
-  if (path === "/") return base || "/";
-  return `${base}${path}`;
-}
+export const SITE_REGION: Region = "et";

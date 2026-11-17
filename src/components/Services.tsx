@@ -4,16 +4,13 @@ import { Bezel } from "@/components/ui/bezel";
 import { PanelTag } from "@/components/ui/panel";
 import SectionIntro from "./SectionIntro";
 import type { Edition } from "@/lib/editions";
-import { type Region, regionPath } from "@/lib/regions";
 
 /** The six service lines as a card grid. Used on the homepage and /services. */
 export default function Services({
   services,
-  region,
   showLink = true,
 }: {
   services: Edition["services"];
-  region: Region;
   showLink?: boolean;
 }) {
   return (
@@ -68,7 +65,7 @@ export default function Services({
           <Reveal delay={0.2}>
             <p className="mt-12 text-center text-[15.5px]">
               <Link
-                href={regionPath(region, "/services")}
+                href="/services"
                 className="font-medium text-ink-muted underline decoration-hairline underline-offset-2 transition-colors hover:text-ink"
               >
                 See how we deliver each service →

@@ -1,6 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /** The Ethiopia edition used to live under /et; it is now the whole site. */
+  async redirects() {
+    return [
+      { source: "/et", destination: "/", permanent: true },
+      { source: "/et/:path*", destination: "/:path*", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

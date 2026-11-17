@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import ServicesPage from "@/components/ServicesPage";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Software Development Services in Ethiopia",
   description:
-    "Custom software, SaaS, mobile apps, AI integration, product design, cloud and dedicated developers from Lian Labs.",
+    "Business software, websites, mobile apps, Telebirr and Chapa payment integration, school management and AI automation for Ethiopian organisations.",
   alternates: { canonical: "/services" },
 };
 
 export default function Page() {
-  return <ServicesPage region="world" />;
+  return <ServicesPage />;
 }

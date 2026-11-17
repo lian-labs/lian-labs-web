@@ -5,55 +5,49 @@ import {
   COMPANY_GITHUB,
   COMPANY_LINKEDIN,
   CONTACT_EMAIL,
-  HQ_LOCATION,
+  OFFICE,
+  OFFICE_ADDRESS,
   SITE_NAME,
 } from "@/lib/site";
 import { PRODUCTS } from "@/lib/products";
-import { REGIONS, REGION_META, type Region, regionPath } from "@/lib/regions";
 
 type FooterLink = { label: string; href: string; external?: boolean };
 
-function columns(region: Region): { heading: string; links: FooterLink[] }[] {
-  return [
-    {
-      heading: "Company",
-      links: [
-        { label: "Services", href: regionPath(region, "/services") },
-        { label: "Products", href: "/products" },
-        { label: "Clients", href: `${regionPath(region)}#clients` },
-        { label: "About", href: "/about" },
-        { label: "Contact", href: "/contact" },
-      ],
-    },
-    {
-      heading: "Products",
-      links: PRODUCTS.map((p) => ({
-        label: p.name,
-        href: `/products/${p.slug}`,
-      })),
-    },
-    {
-      heading: "Editions",
-      links: [
-        ...REGIONS.map((r) => ({
-          label: REGION_META[r].label,
-          href: regionPath(r),
-        })),
-        { label: "LinkedIn", href: COMPANY_LINKEDIN, external: true },
-        { label: "GitHub", href: COMPANY_GITHUB, external: true },
-      ],
-    },
-    {
-      heading: "Legal",
-      links: [
-        { label: "Privacy", href: "/privacy" },
-        { label: "Terms", href: "/terms" },
-      ],
-    },
-  ];
-}
+const COLUMNS: { heading: string; links: FooterLink[] }[] = [
+  {
+    heading: "Company",
+    links: [
+      { label: "Services", href: "/services" },
+      { label: "Products", href: "/products" },
+      { label: "Clients", href: "/#clients" },
+      { label: "About", href: "/about" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    heading: "Products",
+    links: PRODUCTS.map((p) => ({
+      label: p.name,
+      href: `/products/${p.slug}`,
+    })),
+  },
+  {
+    heading: "Follow",
+    links: [
+      { label: "LinkedIn", href: COMPANY_LINKEDIN, external: true },
+      { label: "GitHub", href: COMPANY_GITHUB, external: true },
+    ],
+  },
+  {
+    heading: "Legal",
+    links: [
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
+    ],
+  },
+];
 
-export default function Footer({ region = "world" }: { region?: Region }) {
+export default function Footer() {
   return (
     <footer className="pt-10">
       <div className="wrap">
@@ -61,8 +55,8 @@ export default function Footer({ region = "world" }: { region?: Region }) {
           <div>
             <Logo />
             <p className="mt-4 max-w-xs text-[14.5px] leading-relaxed text-ink-muted">
-              A software company from Addis Ababa building web platforms,
-              mobile apps and AI products for Ethiopia and the world.
+              A software company from Addis Ababa building web platforms, mobile
+              apps and AI products for Ethiopia and the world.
             </p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
@@ -70,11 +64,18 @@ export default function Footer({ region = "world" }: { region?: Region }) {
             >
               {CONTACT_EMAIL}
             </a>
-            <p className="mt-1 text-[14px] text-ink-faint">{HQ_LOCATION}</p>
+            <a
+              href={OFFICE.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 block max-w-xs text-[14px] leading-relaxed text-ink-faint transition-colors hover:text-ink"
+            >
+              {OFFICE_ADDRESS}
+            </a>
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
-            {columns(region).map((col) => (
+            {COLUMNS.map((col) => (
               <div key={col.heading}>
                 <Meta>{col.heading}</Meta>
                 <ul className="mt-4 flex flex-col gap-3">

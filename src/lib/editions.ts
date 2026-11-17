@@ -1,4 +1,4 @@
-import type { Region } from "./regions";
+import { type Region, SITE_REGION } from "./regions";
 
 /**
  * Everything that differs between the global and the Ethiopia edition lives
@@ -71,8 +71,8 @@ const world: Edition = {
     second: "for teams around the world.",
     lead: "Lian Labs is a product engineering studio based in Ethiopia. We take ideas from first sketch to production: web platforms, mobile apps and AI-powered products, built by a senior team that works your hours.",
     metrics: [
-      { value: "25+", label: "Projects delivered" },
-      { value: "6+", label: "Countries served" },
+      { value: "18+", label: "Projects delivered" },
+      { value: "5+", label: "Countries served" },
       { value: "UTC+3", label: "Overlap with Europe & US East" },
     ],
   },
@@ -198,8 +198,8 @@ const et: Edition = {
     second: "built to a global standard.",
     lead: "Lian Labs builds the systems that run your organisation: business software, websites, mobile apps and integrations with Telebirr, Chapa and local banks. The same team that ships products for clients in the US and Europe, right here in Addis.",
     metrics: [
-      { value: "25+", label: "Projects delivered" },
-      { value: "6+", label: "Countries served" },
+      { value: "18+", label: "Projects delivered" },
+      { value: "5+", label: "Countries served" },
       { value: "Local", label: "Team & support in Addis Ababa" },
     ],
   },
@@ -309,3 +309,6 @@ const et: Edition = {
 };
 
 export const EDITIONS: Record<Region, Edition> = { world, et };
+
+/** The edition this site serves. */
+export const EDITION = EDITIONS[SITE_REGION];

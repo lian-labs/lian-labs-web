@@ -8,7 +8,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { Bezel } from "@/components/ui/bezel";
 import { PanelTag } from "@/components/ui/panel";
 import { PillLink } from "@/components/ui/pill";
-import { EDITIONS } from "@/lib/editions";
+import { EDITION } from "@/lib/editions";
 import { getProduct, PRODUCTS } from "@/lib/products";
 
 export function generateStaticParams() {
@@ -24,9 +24,14 @@ export async function generateMetadata({
   const product = getProduct(slug);
   if (!product) return {};
   return {
-    title: `${product.name}: ${product.category}`,
-    description: product.tagline,
+    title: { absolute: product.seoTitle },
+    description: product.seoDescription,
     alternates: { canonical: `/products/${product.slug}` },
+    openGraph: {
+      title: product.seoTitle,
+      description: product.seoDescription,
+      url: `/products/${product.slug}`,
+    },
   };
 }
 
@@ -95,7 +100,7 @@ export default async function ProductPage({
           first: `Interested in ${product.name}?`,
           second: "Let's talk.",
           lead: "Book a short call for a demo, pricing or a custom setup for your organisation.",
-          fine: EDITIONS.world.cta.fine,
+          fine: EDITION.cta.fine,
         }}
       />
     </SiteShell>

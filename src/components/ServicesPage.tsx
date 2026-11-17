@@ -4,16 +4,14 @@ import Services from "./Services";
 import Process from "./Process";
 import FAQ from "./FAQ";
 import CallToAction from "./CallToAction";
-import { EDITIONS } from "@/lib/editions";
-import { type Region, regionPath } from "@/lib/regions";
+import { EDITION as edition } from "@/lib/editions";
 
-export default function ServicesPage({ region }: { region: Region }) {
-  const edition = EDITIONS[region];
+export default function ServicesPage() {
   return (
-    <SiteShell region={region}>
+    <SiteShell>
       <PageHeader
         meta="Services"
-        crumb={{ name: "Services", path: regionPath(region, "/services") }}
+        crumb={{ name: "Services", path: "/services" }}
         title={
           <>
             {edition.services.first}
@@ -24,7 +22,7 @@ export default function ServicesPage({ region }: { region: Region }) {
         }
         lead={edition.services.lead}
       />
-      <Services services={edition.services} region={region} showLink={false} />
+      <Services services={edition.services} showLink={false} />
       <Process steps={edition.process} />
       <FAQ items={edition.faq} />
       <CallToAction cta={edition.cta} />

@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import HomePage from "@/components/HomePage";
-import { EDITIONS } from "@/lib/editions";
+import { EDITION } from "@/lib/editions";
 
-const { title, description } = EDITIONS.world.meta;
+const { title, description } = EDITION.meta;
 
 export const metadata: Metadata = {
   title: { absolute: title },
   description,
-  alternates: { canonical: "/", languages: { "en-ET": "/et", "x-default": "/" } },
-  openGraph: { title, description, url: "/" },
+  alternates: { canonical: "/" },
+  openGraph: { title, description, url: "/", locale: "en_ET" },
 };
 
 export default function Home() {
-  return <HomePage region="world" />;
+  return <HomePage />;
 }

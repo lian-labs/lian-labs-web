@@ -5,7 +5,12 @@ import { Bezel } from "@/components/ui/bezel";
 import { Meta } from "@/components/visuals/bits";
 import SiteShell from "@/components/SiteShell";
 import { contactPageSchema } from "@/lib/schema";
-import { BOOK_CALL_URL, BOOK_CTA_LABEL, CONTACT_EMAIL } from "@/lib/site";
+import {
+  BOOK_CALL_URL,
+  BOOK_CTA_LABEL,
+  CONTACT_EMAIL,
+  OFFICE,
+} from "@/lib/site";
 
 const DESCRIPTION =
   "Talk to Lian Labs about a new product, a platform rebuild, one of our products, or extending your team.";
@@ -48,7 +53,7 @@ export default function ContactPage() {
             and a rough plan within one business day.
           </p>
 
-          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
             <a
               href={BOOK_CALL_URL}
               target="_blank"
@@ -80,6 +85,27 @@ export default function ContactPage() {
                   anything you would rather put in writing.
                 </p>
                 <p className="mt-3 text-sm text-brand-700">{CONTACT_EMAIL}</p>
+              </Bezel>
+            </a>
+
+            <a
+              href={OFFICE.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block h-full"
+            >
+              <Bezel
+                className="h-full transition-transform duration-300 group-hover:-translate-y-0.5"
+                innerClassName="h-full p-7"
+              >
+                <p className="text-sm text-ink-muted">To meet in person</p>
+                <h2 className="mt-2 text-xl text-ink">Visit our office</h2>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+                  {OFFICE.building}
+                  <br />
+                  {OFFICE.city}, {OFFICE.country}
+                </p>
+                <p className="mt-3 text-sm text-brand-700">Open in Google Maps ↗</p>
               </Bezel>
             </a>
           </div>

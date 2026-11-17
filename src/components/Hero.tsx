@@ -4,14 +4,11 @@ import { Eyebrow, PillLink } from "@/components/ui/pill";
 import LogoMarquee from "./LogoMarquee";
 import { BOOK_CALL_URL, BOOK_CTA_LABEL } from "@/lib/links";
 import type { Edition } from "@/lib/editions";
-import { type Region, regionPath } from "@/lib/regions";
 
 export default function Hero({
   hero,
-  region,
 }: {
   hero: Edition["hero"];
-  region: Region;
 }) {
   return (
     <section className="flex min-h-svh flex-col pt-28 pb-10 sm:pt-36 sm:pb-14">
@@ -63,7 +60,7 @@ export default function Hero({
                 <span aria-hidden>→</span>
               </PillLink>
               <PillLink
-                href={`${regionPath(region)}#products`}
+                href="/#products"
                 variant="light"
                 size="lg"
                 className="min-w-[240px] justify-between sm:min-w-[260px]"

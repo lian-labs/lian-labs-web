@@ -9,19 +9,16 @@ import Statement from "./Statement";
 import FAQ from "./FAQ";
 import CallToAction from "./CallToAction";
 import JsonLd from "./JsonLd";
-import { EDITIONS } from "@/lib/editions";
-import type { Region } from "@/lib/regions";
+import { EDITION as edition } from "@/lib/editions";
 import { faqSchema } from "@/lib/schema";
 
-/** The homepage for either edition. Copy comes from `EDITIONS[region]`. */
-export default function HomePage({ region }: { region: Region }) {
-  const edition = EDITIONS[region];
-
+/** The homepage. Copy comes from the edition this site serves. */
+export default function HomePage() {
   return (
-    <SiteShell region={region}>
+    <SiteShell>
       <JsonLd data={faqSchema(edition.faq)} />
-      <Hero hero={edition.hero} region={region} />
-      <Services services={edition.services} region={region} />
+      <Hero hero={edition.hero} />
+      <Services services={edition.services} />
       <Products />
       <Clients reach={edition.reach} />
       <Statement>{edition.statement}</Statement>

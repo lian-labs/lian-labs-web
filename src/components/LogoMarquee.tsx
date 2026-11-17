@@ -31,6 +31,7 @@ const CLIENTS = [
   },
   // A wordmark only, with no symbol, so the name stands on its own.
   { name: "Arkaya Venture" },
+  { name: "Impakt" },
 ] as {
   name: string;
   logo?: string;

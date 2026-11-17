@@ -14,8 +14,9 @@ import JsonLd from "@/components/JsonLd";
 import SiteAnalytics from "@/components/SiteAnalytics";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
+import { EDITION } from "@/lib/editions";
 
-const HOME_TITLE = "Lian Labs | Software Studio from Ethiopia for the World";
+const HOME_TITLE = EDITION.meta.title;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en",
+    locale: "en_ET",
     siteName: SITE_NAME,
     title: HOME_TITLE,
     description: SITE_DESCRIPTION,

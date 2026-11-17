@@ -8,8 +8,8 @@ import CallToAction from "@/components/CallToAction";
 import { Reveal } from "@/components/motion/reveal";
 import { Bezel } from "@/components/ui/bezel";
 import { PanelTag } from "@/components/ui/panel";
-import { EDITIONS } from "@/lib/editions";
-import { HQ_LOCATION } from "@/lib/site";
+import { EDITION } from "@/lib/editions";
+import { OFFICE } from "@/lib/site";
 
 const DESCRIPTION =
   "Lian Labs is a software company from Addis Ababa building web platforms, mobile apps and AI products for clients in Ethiopia and around the world.";
@@ -53,7 +53,7 @@ export default function AboutPage() {
             </span>
           </>
         }
-        lead={`Lian Labs is a product engineering company headquartered in ${HQ_LOCATION}. We design and build web platforms, mobile apps and AI-powered products for clients across North America, Europe and Africa, and we build products of our own.`}
+        lead={`Lian Labs is a product engineering company headquartered in ${OFFICE.city}, ${OFFICE.country}, at ${OFFICE.building}. We design and build web platforms, mobile apps and AI-powered products for clients across North America, Europe and Africa, and we build products of our own.`}
       />
 
       <section className="band-tight">
@@ -76,10 +76,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Clients reach={EDITIONS.world.reach} />
+      <Clients reach={EDITION.reach} />
       <Products />
-      <WhyUs why={EDITIONS.world.why} />
-      <CallToAction cta={EDITIONS.world.cta} />
+      <WhyUs why={EDITION.why} />
+      <CallToAction cta={EDITION.cta} />
     </SiteShell>
   );
 }

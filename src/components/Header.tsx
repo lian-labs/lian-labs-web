@@ -5,18 +5,13 @@ import Link from "next/link";
 import Logo from "./Logo";
 import { BOOK_CALL_URL, BOOK_CTA_LABEL } from "@/lib/links";
 import { cn } from "@/lib/cn";
-import { type Region, regionPath } from "@/lib/regions";
-import RegionSwitch from "./RegionSwitch";
-
-function navLinks(region: Region) {
-  return [
-    { label: "Services", href: regionPath(region, "/services") },
-    { label: "Products", href: "/products" },
-    { label: "Clients", href: `${regionPath(region)}#clients` },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
-  ];
-}
+const NAV_LINKS = [
+  { label: "Services", href: "/services" },
+  { label: "Products", href: "/products" },
+  { label: "Clients", href: "/#clients" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
 
 /**
  * Three floating pieces on a transparent bar rather than one full-width bar:
@@ -27,8 +22,7 @@ function navLinks(region: Region) {
  * The mobile disclosure closes on route change and on Escape, and locks body
  * scroll while open.
  */
-export default function Header({ region = "world" }: { region?: Region }) {
-  const NAV_LINKS = navLinks(region);
+export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -64,7 +58,7 @@ export default function Header({ region = "world" }: { region?: Region }) {
     <header className="fixed inset-x-0 top-0 z-50 pt-3 sm:pt-4">
       <div className="wrap grid grid-cols-[auto_1fr] items-center gap-4 lg:grid-cols-[1fr_auto_1fr]">
         <Link
-          href={regionPath(region)}
+          href="/"
           aria-label="Lian Labs home"
           onClick={() => setOpen(false)}
           className="flex h-13 shrink-0 items-center"
@@ -91,7 +85,6 @@ export default function Header({ region = "world" }: { region?: Region }) {
         </nav>
 
         <div className="flex items-center justify-end gap-2">
-          <RegionSwitch region={region} className={cn("hidden sm:flex", capsule)} />
           <a
             href={BOOK_CALL_URL}
             target="_blank"
@@ -152,11 +145,6 @@ export default function Header({ region = "world" }: { region?: Region }) {
           aria-label="Mobile"
           className={cn("flex flex-col rounded-3xl p-3", capsule)}
         >
-          <RegionSwitch
-            region={region}
-            onNavigate={() => setOpen(false)}
-            className="mb-2 self-start bg-ink/[0.04] sm:hidden"
-          />
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}

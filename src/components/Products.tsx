@@ -83,7 +83,7 @@ export default function Products() {
           </p>
         </SectionIntro>
 
-        <ul className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-2">
+        <ul className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {PRODUCTS.map((product, i) => (
             <Reveal key={product.slug} as="li" delay={i * 0.08}>
               <ProductCard product={product} />

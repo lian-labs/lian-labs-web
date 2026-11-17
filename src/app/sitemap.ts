@@ -5,9 +5,7 @@ import { absoluteUrl } from "@/lib/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages: Array<[string, number]> = [
     ["/", 1],
-    ["/et", 1],
     ["/services", 0.9],
-    ["/et/services", 0.9],
     ["/products", 0.9],
     ["/about", 0.7],
     ["/contact", 0.7],
