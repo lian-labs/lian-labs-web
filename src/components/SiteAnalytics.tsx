@@ -6,11 +6,12 @@ import { GoogleAnalytics, sendGAEvent } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import { track } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { BOOK_CALL_URL } from "@/lib/site";
 
 function eventNameForLink(link: HTMLAnchorElement) {
   const explicit = link.dataset.analytics;
   if (explicit) return explicit;
-  if (link.href.includes("cal.com/lian-labs")) return "consultation_click";
+  if (link.href.startsWith(BOOK_CALL_URL)) return "consultation_click";
   if (link.href.startsWith("mailto:")) return "email_click";
   return null;
 }

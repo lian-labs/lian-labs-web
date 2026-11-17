@@ -15,7 +15,8 @@ export const SITE_DESCRIPTION =
   "Lian Labs is a software company in Addis Ababa. We build business software, websites, mobile apps and payment integrations for Ethiopian companies, schools and organisations.";
 
 export const CONTACT_EMAIL = "contact@lian-labs.com";
-export const BOOK_CALL_URL = "https://cal.com/lian-labs/discovery-call";
+export const BOOK_CALL_URL =
+  "https://cal.com/tamirat-dereje-lian-labs/free-consultation";
 export const BOOK_CTA_LABEL = "Start a project";
 export const OFFICE = {
   building: "Rayuma Building, 9th floor",
